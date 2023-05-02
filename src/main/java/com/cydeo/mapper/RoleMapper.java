@@ -3,7 +3,9 @@ package com.cydeo.mapper;
 import com.cydeo.dto.RoleDTO;
 import com.cydeo.entity.Role;
 import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RoleMapper {
 
     //if you want to use any methods from ModelMapper class I need to inject
