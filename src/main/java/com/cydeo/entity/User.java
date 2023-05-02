@@ -20,9 +20,10 @@ public class User extends BaseEntity {
     private String passWord;
     private boolean enabled;
     private String phone;
-    @ManyToOne
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "role_id")
     private Role role;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
