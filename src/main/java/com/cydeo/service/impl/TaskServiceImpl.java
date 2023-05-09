@@ -40,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void save(TaskDTO dto) {
-        //because statu is not coming from UI form, we need to set it manually for now
+        //because status is not coming from UI form, we need to set it manually for now
         dto.setTaskStatus(Status.OPEN);
         //same for assignDate
         dto.setAssignedDate(LocalDate.now());
@@ -49,7 +49,15 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void update(TaskDTO dto) {
+        Optional<Task> task = taskRepository.findById(dto.getId());
+        Task convertedTask = taskMapper.convertToEntity(dto);
 
+        if (task.isPresent()){
+            convertedTask.setId(task.get().getId());
+            convertedTask.setTaskStatus(task.get().getTaskStatus());
+            convertedTask.setAssignedDate(task.get().getAssignedDate());
+            taskRepository.save(convertedTask);
+        }
     }
 
     @Override
