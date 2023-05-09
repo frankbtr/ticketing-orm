@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 public interface TaskService {
 
-    TaskDTO FindById(Long id);
+    TaskDTO findById(Long id);
     List<TaskDTO> listAllTasks();
     void save(TaskDTO dto);
     void update(TaskDTO dto);
