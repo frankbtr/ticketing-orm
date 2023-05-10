@@ -19,4 +19,6 @@ public interface TaskService {
     int totalCompletedTask(String projectCode);
 
     void deleteByProject(ProjectDTO convertToDto);
+
+    void completeByProject(ProjectDTO convertToDto);
 }
