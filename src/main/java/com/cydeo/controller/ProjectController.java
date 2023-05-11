@@ -36,7 +36,7 @@ public class ProjectController {
     }
 
     @PostMapping("/create")
-    public String insertProject(@Valid @ModelAttribute("project") ProjectDTO project, BindingResult bindingResult, Model model) {
+    public String insertProject(@ModelAttribute("project") ProjectDTO project, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
 
@@ -44,12 +44,9 @@ public class ProjectController {
             model.addAttribute("managers", userService.listAllByRole("manager"));
 
             return "/project/create";
-
         }
-
         projectService.save(project);
         return "redirect:/project/create";
-
     }
 
     @GetMapping("/delete/{projectcode}")
@@ -72,11 +69,10 @@ public class ProjectController {
         model.addAttribute("managers", userService.listAllByRole("manager"));
 
         return "/project/update";
-
     }
 
     @PostMapping("/update")
-    public String updateProject(@Valid @ModelAttribute("project") ProjectDTO project, BindingResult bindingResult, Model model) {
+    public String updateProject(@ModelAttribute("project") ProjectDTO project, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
 
@@ -84,12 +80,9 @@ public class ProjectController {
             model.addAttribute("managers", userService.listAllByRole("manager"));
 
             return "/project/update";
-
         }
-
         projectService.update(project);
         return "redirect:/project/create";
-
     }
 
     @GetMapping("/manager/project-status")
@@ -107,5 +100,4 @@ public class ProjectController {
 //        projectService.complete(projectService.findById(projectCode));
 //        return "redirect:/project/manager/project-status";
 //    }
-
 }
